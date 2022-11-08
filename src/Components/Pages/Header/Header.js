@@ -1,7 +1,21 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { Navbar } from "flowbite-react";
+import { useContext } from "react";
+import { AuthContext } from '../../../Context/UserContext';
+
 import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
+    const { user, logoutUser } = useContext(AuthContext);
+
+    // this is for log out function
+    const handleLogOut = () => {
+        logoutUser()
+            .then(() => { })
+            .catch(error => {
+                console.log(error);
+            })
+    };
+  
     return (
         <div className="shadow drop-shadow-sm">
             <Navbar className="max-w-screen-xl mx-auto" fluid={true} rounded={true}>
@@ -15,32 +29,7 @@ const Header = () => {
                         Explore the World
                     </Link>
                 </Navbar.Brand>
-                <div className="flex md:order-2">
-                    <Dropdown
-                        arrowIcon={false}
-                        inline={true}
-                        label={
-                            <Avatar
-                                alt="User settings"
-                                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                rounded={true}
-                            />
-                        }
-                    >
-                        <Dropdown.Header>
-                            <span className="block text-sm">John</span>
-                            <span className="block truncate text-sm font-medium">john.doe@gmail.com</span>
-                        </Dropdown.Header>
-                        <Dropdown.Item>
-                            <NavLink to="/dashboard">Dashboard</NavLink>
-                        </Dropdown.Item>
-                        <Dropdown.Item>Settings</Dropdown.Item>
-                        <Dropdown.Item>Earnings</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item>Sign out</Dropdown.Item>
-                    </Dropdown>
-                    <Navbar.Toggle />
-                </div>
+                
                 <Navbar.Collapse>
                     <NavLink to='/home' active={true}>
                         Home
@@ -49,12 +38,29 @@ const Header = () => {
 
                     <NavLink to="/addservice" >Add Service</NavLink>
                     <NavLink to="/myreview" >MyReview</NavLink>
-                    <NavLink to="/products" >Products</NavLink>
                     <NavLink to="/blog" >Blog</NavLink>
-                    <NavLink to="/login" >Login</NavLink>
+                   
 
 
                 </Navbar.Collapse>
+                {
+                    user || user?.email || user?.uid || user?.displayName
+
+                        ?
+                        <div className='flex justify-center items-center gap-4'>
+                            <div>  <button onClick={handleLogOut} className='bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all'>
+                                <Link to='/' >Sign Out</Link>
+                            </button></div>    
+                            <img src={user?.photoURL} className="w-10 h-10 rounded-full" alt="" />                
+                        </div>
+
+                        :
+                        <div className='flex gap-4'>
+                            <button className='bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all'>
+                                <Link to='/login' >Login</Link>
+                            </button>
+                        </div>
+                }
             </Navbar>
        </div>
     );

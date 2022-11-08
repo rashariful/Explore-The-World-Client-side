@@ -1,4 +1,6 @@
 import React from 'react';
+import swal from 'sweetalert';
+
 
 const AddService = () => {
     const handleSubmit = (e) => {
@@ -22,13 +24,25 @@ const AddService = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.success) {
-                    alert(data.message);
+                    swal({
+                        title: data.message,
+                        icon: "success",
+                        button: "ok",
+                    });
                 } else {
-                    alert(data.error);
+                    swal({
+                        title: data.error,
+                        icon: "warning",
+                        button: "ok",
+                    });
                 }
             })
             .catch((err) => {
-                alert(err.message);
+                swal({
+                    title: err.message,
+                    icon: "warning",
+                    button: "ok",
+                });
             });
         e.target.reset();
     };
