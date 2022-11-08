@@ -14,11 +14,8 @@ const Footer = () => {
                 className="inline-flex items-center text-gray-100 text-xl md:text-2xl font-bold gap-2"
                 aria-label="logo"
               >
-                <img src="../Assests/the-edu-planner.png" alt="" />
-                <span className="text-indigo-600 text-2xl">
-                  {" "}
-                  <FaEdgeLegacy></FaEdgeLegacy>{" "}
-                </span>{" "}
+                <img className="w-20 h-auto rounded-md" src="https://www.logodesign.net/logo/hiker-on-mountain-top-6158ld.png?size=2&industry=travel-hotel" alt="" />
+               
                 Explore the World
               </a>
             </div>
