@@ -10,26 +10,26 @@ const ServicesDetails = () => {
     setUser, } = useContext(AuthContext)
 console.log(user);
   const [reviews, setReviews] = useState([])
+  const [refresh, setRefresh] = useState(false)
   const service = useLoaderData();
   const { _id, image, name, price, description } = service.data;
-  console.log(reviews);
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const product = {
+    const review = {
       review: e.target.review.value,
       id: _id,
       user: user
     };
-    console.log(product);
-  
+ 
 
     fetch("http://localhost:5000/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(product),
+      body: JSON.stringify(review),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -62,13 +62,14 @@ console.log(user);
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          setReviews(data.data)
+           setRefresh(true)
+          setReviews(data.data)  
         }
       })
       .catch(error => {
         console.log(error);
       })
-  }, [])
+  }, [refresh])
 
   return (
     <>
@@ -162,10 +163,10 @@ console.log(user);
                   <div className="w-[70%] mx-auto">
                     <div className="flex gap-5 items-center">
                       <div>
-                        <img src={user.photoURL} className='w-12 h-12 rounded-full' alt="" />
+                        <img src={user?.photoURL} className='w-12 h-12 rounded-full' alt="" />
                       </div>
                       <div>
-                        <h1> {user.displayName}</h1>
+                        <h1> {user?.displayName}</h1>
                         <p className="text-gray-500"><small>06/10/2022</small></p>
                       </div>
                     </div>
@@ -194,7 +195,6 @@ console.log(user);
               >
 
               </textarea>
-
               <div className="">
 
                 {
@@ -216,7 +216,9 @@ console.log(user);
                 }
 
               </div>
+             
             </div>
+           
 
 
           
