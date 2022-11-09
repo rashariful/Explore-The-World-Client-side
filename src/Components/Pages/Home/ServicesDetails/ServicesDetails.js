@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useContext} from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import { AuthContext } from "../../../../Context/UserContext";
 import swal from 'sweetalert';
 import "react-photo-view/dist/react-photo-view.css";
 
 const ServicesDetails = () => {
+  const { user,
+    setUser, } = useContext(AuthContext)
+console.log(user);
   const [reviews, setReviews] = useState([])
   const service = useLoaderData();
   const { _id, image, name, price, description } = service.data;
@@ -14,9 +18,10 @@ const ServicesDetails = () => {
     e.preventDefault();
     const product = {
       review: e.target.review.value,
-      id: _id
+      id: _id,
+      user: user
     };
-
+    console.log(product);
   
 
     fetch("http://localhost:5000/review", {
@@ -151,31 +156,71 @@ const ServicesDetails = () => {
       <section>
         <div className="w-[50%] mx-auto">
           {
-            reviews.map(review => <li>{review.review}</li> )
+            reviews.map(review =>  {
+              return (
+                <>
+                  <div className="w-[70%] mx-auto">
+                    <div className="flex gap-5 items-center">
+                      <div>
+                        <img src={user.photoURL} className='w-12 h-12 rounded-full' alt="" />
+                      </div>
+                      <div>
+                        <h1> {user.displayName}</h1>
+                        <p className="text-gray-500"><small>06/10/2022</small></p>
+                      </div>
+                    </div>
+
+                    <div className="w-1/2 py-5 px-4 border rounded-lg my-5">
+                      <p className="text-gray-500">{review.review}</p>
+                    </div>
+                  </div>
+                </>
+              )
+            })
           }
-          <p>{description}</p>
+         
+          
           </div>
        <div className="w-[60%] mx-auto">
           <form onSubmit={handleSubmit}>
 
-            <div className="flex items-center mb-10">
+            <div className="flex flex-col  w-1/2 mx-auto gap-3">
               <textarea
                 name="review"
                 placeholder="Type your review"
                 id="" cols="30"
                 rows=""
-                className="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none"
+                className="flex-1 py-5 border-b-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none rounded-lg"
               >
 
               </textarea>
+
+              <div className="">
+
+                {
+                  user || user?.email || user?.uid || user?.displayName
+
+                    ?
+                    <div className='flex justify-end mb-10 items-center gap-4'>
+                      <div>  <button className='bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all'>
+                        Add review
+                      </button></div>
+                    </div>
+
+                    :
+                    <div className='flex gap-4'>
+                      <button className='bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all'>
+                        <Link to='/login' >Login</Link>
+                      </button>
+                    </div>
+                }
+
+              </div>
             </div>
 
 
-            <div className="text-right">
-              <button className="py-3 px-8 rounded-md bg-green-400 text-white font-bold">
-                Add review
-              </button>
-            </div>
+          
+          
           </form>
        </div>
       </section>

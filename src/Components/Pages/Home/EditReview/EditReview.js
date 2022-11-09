@@ -5,9 +5,8 @@ const EditReview = () => {
     const router = useParams();
     const { id } = router;
     const [reviews, setReviews] = useState();
-    const [refresh, setRefresh] = useState(false);
     const navigate = useNavigate();
-    console.log(reviews?.review);
+    console.log(reviews);
 
     useEffect(() => {
         fetch(`http://localhost:5000/review/${id}`)
@@ -16,7 +15,7 @@ const EditReview = () => {
                 setReviews(data.data);
                 console.log(data);
             });
-    }, [refresh, id]);
+    }, [id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,7 +41,7 @@ const EditReview = () => {
             })
             .catch((err) => alert(err.message));
     };
-    console.log(reviews);
+
 
     return (
         <>
