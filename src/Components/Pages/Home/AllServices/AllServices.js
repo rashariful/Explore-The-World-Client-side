@@ -3,7 +3,6 @@ import Service from '../Services/Service/Service';
 
 const AllServices = () => {
     const [services, setServices] = useState([])
-    console.log(services);
 
     useEffect(() => {
         fetch('http://localhost:5000/service?route=home')

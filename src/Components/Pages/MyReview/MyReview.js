@@ -1,11 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Dropdown, Table } from "flowbite-react";
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Context/UserContext';
 
 const MyReview = () => {
     const [reviews, setReviews] = useState([]);
     const [refresh, setRefresh] = useState(false);
-    console.log(reviews);
+    const {user} = useContext(AuthContext)
+
+    const [myReviews, setMyReviews] = useState({})
+
+    useEffect(()=>{
+        fetch(`http://localhost:5000/review?email=${user.email}`)
+        .then(res => res.json())
+        .then(data => setMyReviews(data))
+    },[user.email])
+   
 
     // Get function for products
     useEffect(() => {
@@ -48,6 +58,7 @@ const MyReview = () => {
 
     return (
         <>
+            <h1>my reviews {myReviews.length} length</h1>
             <div className="py-32 px-10 flex justify-center w-full">
                 {
                     reviews.length === 0 ? 

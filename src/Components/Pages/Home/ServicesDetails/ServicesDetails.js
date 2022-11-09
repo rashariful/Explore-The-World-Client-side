@@ -6,8 +6,7 @@ import swal from 'sweetalert';
 import "react-photo-view/dist/react-photo-view.css";
 
 const ServicesDetails = () => {
-  const { user,
-    setUser, } = useContext(AuthContext)
+  const { user} = useContext(AuthContext)
 console.log(user);
   const [reviews, setReviews] = useState([])
   const [refresh, setRefresh] = useState(false)
@@ -34,6 +33,7 @@ console.log(user);
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          setRefresh(!refresh)
           swal({
             title: data.message,
             icon: "success",
@@ -62,7 +62,7 @@ console.log(user);
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-           setRefresh(true)
+         
           setReviews(data.data)  
         }
       })
@@ -185,44 +185,39 @@ console.log(user);
        <div className="w-[60%] mx-auto">
           <form onSubmit={handleSubmit}>
 
-            <div className="flex flex-col  w-1/2 mx-auto gap-3">
-              <textarea
-                name="review"
-                placeholder="Type your review"
-                id="" cols="30"
-                rows=""
-                className="flex-1 py-5 border-b-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none rounded-lg"
-              >
+            <div className="flex justify-center mx-auto gap-3">
+              {
+                user || user?.email || user?.uid || user?.displayName
 
-              </textarea>
-              <div className="">
+                  ?
+                  <div>
+                    <textarea
+                      name="review"
+                      placeholder="Type your review"
+                      id="" cols="30"
+                      rows=""
+                      className="flex-1 py-5 border-b-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none rounded-lg"
+                    >
+                    </textarea>
 
-                {
-                  user || user?.email || user?.uid || user?.displayName
-
-                    ?
-                    <div className='flex justify-end mb-10 items-center gap-4'>
+                    <div className='flex mb-10 items-center gap-4'>
                       <div>  <button className='bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all'>
                         Add review
                       </button></div>
                     </div>
 
+                  </div>
                     :
-                    <div className='flex gap-4'>
+                    <div className='gap-4'>
                       <button className='bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all'>
+                      <h3>Please login to add a review</h3>
                         <Link to='/login' >Login</Link>
                       </button>
                     </div>
                 }
 
-              </div>
-             
             </div>
            
-
-
-          
-          
           </form>
        </div>
       </section>

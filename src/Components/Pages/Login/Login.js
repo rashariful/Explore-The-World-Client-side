@@ -29,12 +29,30 @@ const Login = () => {
 
     signInUser(email, password)
       .then((result) => {
+        const user = result.user
+        const currentUser ={
+          email: user.email
+        }
+        fetch('http://localhost:5000/jwt',{
+          method: 'POST',
+          headers:{
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          localStorage.setItem('token', data.token)
+        })
+        console.log(currentUser);
+
           swal({
               title: "Login Successful!",
               icon: "success",
               button: "ok",
           });
-        const user = result.user;
+       
         setError("");
       })
       .catch((error) => {
