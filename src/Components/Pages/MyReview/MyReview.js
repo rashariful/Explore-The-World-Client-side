@@ -42,7 +42,7 @@ const MyReview = () => {
     // handleEdit
     const navigate = useNavigate();
     const handleEdit = (id) => {
-        navigate(`/dashboard/product/edit/${id}`);
+        navigate(`/myreview/edit/${id}`);
     };
 
 

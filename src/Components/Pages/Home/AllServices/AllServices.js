@@ -6,7 +6,7 @@ const AllServices = () => {
     console.log(services);
 
     useEffect(() => {
-        fetch('http://localhost:5000/service')
+        fetch('http://localhost:5000/service?route=home')
             .then(res => res.json())
             .then(data => {
                 if (data.success) {

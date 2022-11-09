@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AddService from "../Components/Pages/AddService/AddService";
 import Blog from "../Components/Pages/Blog/Blog";
 import AllServices from "../Components/Pages/Home/AllServices/AllServices";
+import EditReview from "../Components/Pages/Home/EditReview/EditReview";
 import Home from "../Components/Pages/Home/Home/Home";
 import ServicesDetails from "../Components/Pages/Home/ServicesDetails/ServicesDetails";
 import Login from "../Components/Pages/Login/Login";
@@ -21,13 +22,12 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>,
-                // loader: () => fetch('https://fakestoreapi.com/products'),  
+                element: <Home></Home>, 
             },
             {
                 path: '/home',
                 element: <Home></Home>,
-                // loader: ()=> fetch('https://fakestoreapi.com/products'),
+               
             },
             {
                 path: '/addservice',
@@ -48,9 +48,11 @@ const router = createBrowserRouter([
                 element: <ServicesDetails></ServicesDetails>,
                 loader: ({params})=>{
                  return   fetch(`http://localhost:5000/service/${params.id}`)
-                }
-
-               
+                } 
+            },
+            {
+                path: '/myreview/edit/:id',
+                element: <EditReview></EditReview>,
             },
             {
                 path: '/blog',
