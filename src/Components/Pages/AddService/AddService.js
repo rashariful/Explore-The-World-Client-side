@@ -1,8 +1,10 @@
 import React from 'react';
 import swal from 'sweetalert';
+import useTitle from '../../../hooks/useTitle';
 
 
 const AddService = () => {
+    useTitle("add service")
     const handleSubmit = (e) => {
         e.preventDefault();
         const product = {

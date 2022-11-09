@@ -3,9 +3,11 @@ import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import swal from 'sweetalert';
 import { AuthContext } from "../../../Context/UserContext";
+import useTitle from "../../../hooks/useTitle";
 
 
 const Register = () => {
+  useTitle("register")
   
   const {
     setUser,

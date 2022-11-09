@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import swal from 'sweetalert';
+import useTitle from "../../../../hooks/useTitle";
 
 const EditReview = () => {
+    useTitle("edit review")
     const router = useParams();
     const { id } = router;
     const [reviews, setReviews] = useState();
@@ -33,13 +36,27 @@ const EditReview = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.success) {
-                    alert(data.message);
+                    swal({
+                        title: data.message,
+                        icon: "success",
+                        button: "ok",
+                    });
                     navigate("/myreview");
                 } else {
-                    alert(data.error);
+                    swal({
+                        title: data.error,
+                        icon: "warning",
+                        button: "ok",
+                    });
                 }
             })
-            .catch((err) => alert(err.message));
+            .catch((error) => {
+                swal({
+                    title: error,
+                    icon: "warning",
+                    button: "ok",
+                });
+            });
     };
 
 

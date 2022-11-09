@@ -4,10 +4,11 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import { AuthContext } from "../../../../Context/UserContext";
 import swal from 'sweetalert';
 import "react-photo-view/dist/react-photo-view.css";
+import useTitle from "../../../../hooks/useTitle";
 
 const ServicesDetails = () => {
+  useTitle("service")
   const { user} = useContext(AuthContext)
-console.log(user);
   const [reviews, setReviews] = useState([])
   const [refresh, setRefresh] = useState(false)
   const service = useLoaderData();
@@ -21,6 +22,7 @@ console.log(user);
       id: _id,
       user: user
     };
+    console.log(review);
  
 
     fetch("http://localhost:5000/review", {

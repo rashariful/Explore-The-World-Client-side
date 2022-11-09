@@ -3,9 +3,11 @@ import { FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
 import { AuthContext } from "../../../Context/UserContext";
+import useTitle from "../../../hooks/useTitle";
 
 
 const Login = () => {
+  useTitle("login")
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";

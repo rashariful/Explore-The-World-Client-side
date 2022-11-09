@@ -2,19 +2,24 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Dropdown, Table } from "flowbite-react";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/UserContext';
+import useTitle from '../../../hooks/useTitle';
 
 const MyReview = () => {
+    useTitle("my review")
     const [reviews, setReviews] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const {user} = useContext(AuthContext)
 
-    const [myReviews, setMyReviews] = useState({})
+    const [myReviews, setMyReviews] = useState([])
+    console.log(myReviews?.data?.length);
+    console.log(user.email);
+    
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/review?email=${user.email}`)
+        fetch(`http://localhost:5000/review?email=${user?.email}`)
         .then(res => res.json())
         .then(data => setMyReviews(data))
-    },[user.email])
+    },[user?.email])
    
 
     // Get function for products
@@ -58,10 +63,10 @@ const MyReview = () => {
 
     return (
         <>
-            <h1>my reviews {myReviews.length} length</h1>
+           
             <div className="py-32 px-10 flex justify-center w-full">
                 {
-                    reviews.length === 0 ? 
+                    myReviews?.data?.length === 0 ? 
                    <div>
                             <div className="bg-white py-6 sm:py-8 lg:py-12">
                                 <div className="max-w-screen-xl px-4 md:px-8 mx-auto">
@@ -121,7 +126,7 @@ const MyReview = () => {
                             </Table.Head>
 
                             <Table.Body className="divide-y">
-                                {reviews.map((review) => {
+                                {myReviews?.data?.map((review) => {
                                     return (
                                         <>
                                             <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">

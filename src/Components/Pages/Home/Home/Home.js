@@ -1,9 +1,11 @@
+import useTitle from "../../../../hooks/useTitle";
 import About from "../About/About";
 import Gallery from "../Gallery/Gallery";
 import Heros from "../Heros/Heros";
 import Services from "../Services/Services";
 
 const Home = () => {
+    useTitle("home")
 
     return (
         <>
