@@ -11,14 +11,14 @@ const About = () => {
                         <div className="xl:w-5/12 flex flex-col justify-center sm:text-center lg:text-left lg:py-12 xl:py-24">
                             <p className="text-indigo-500 md:text-lg xl:text-xl font-semibold mb-4 md:mb-6">About me</p>
 
-                            <h1 className="text-black-800 text-4xl sm:text-5xl md:text-6xl font-bold mb-8 md:mb-12">Revolutionary way to build the web</h1>
+                            <h1 className="text-black-800 text-4xl sm:text-5xl md:text-6xl font-bold mb-8 md:mb-12">Hey there traveller. We know you want to see the world.</h1>
 
-                            <p className="lg:w-4/5 text-gray-500 xl:text-lg leading-relaxed mb-8 md:mb-12">This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random.</p>
+                            <p className="lg:w-4/5 text-gray-500 xl:text-lg leading-relaxed mb-8 md:mb-12">Where to begin? Do you want to see every single continent? Just one continent in great depth? Just one country in great depth? Travel is our favourite thing on the planet, but to plan a trip around the world involves many potential logistical headaches. That's why we make exploring the world easy, with food, accommodation and transport included in the cost of your trip.</p>
 
                             <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-2.5">
-                                <a href="#" className="inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Start now</a>
+                               
 
-                                <a href="#" className="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Take tour</a>
+                                <a href="#" className="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">contact me</a>
                             </div>
                         </div>
                         {/* <!-- content - end -->

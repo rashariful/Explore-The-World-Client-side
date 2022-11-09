@@ -1,4 +1,5 @@
 import About from "../About/About";
+import Gallery from "../Gallery/Gallery";
 import Heros from "../Heros/Heros";
 import Services from "../Services/Services";
 
@@ -14,6 +15,9 @@ const Home = () => {
             </section>
             <section className="w-[60%] mx-auto">
                 <About/>
+            </section>
+            <section className="w-[60%] mx-auto">
+               <Gallery></Gallery>
             </section>
 
 
