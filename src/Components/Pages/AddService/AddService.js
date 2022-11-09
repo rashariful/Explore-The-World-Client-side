@@ -46,6 +46,7 @@ const AddService = () => {
             });
         e.target.reset();
     };
+    
     return (
         <>
             <div className="py-32 px-10 min-h-screen w-full">
