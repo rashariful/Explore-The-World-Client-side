@@ -6,9 +6,7 @@ import Service from './Service/Service';
 const Services = () => {
     const { setLoading, loading } = useContext(AuthContext)
     const [services, setServices] = useState ([])
-   if(services.length === 0){
-       setLoading(true)
-   }
+ 
 
     useEffect(() => {
         fetch(`http://localhost:5000/service`)
@@ -21,8 +19,9 @@ const Services = () => {
             .catch(error => {
                 console.log(error);
             })
-        setLoading(false)
+       
     }, [])
+
 
     return (
        <>

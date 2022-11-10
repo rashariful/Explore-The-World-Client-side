@@ -1,30 +1,29 @@
-import React, { useEffect, useState , useContext} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { AuthContext } from "../../../../Context/UserContext";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import "react-photo-view/dist/react-photo-view.css";
 import useTitle from "../../../../hooks/useTitle";
 
 const ServicesDetails = () => {
-  useTitle("service")
-  const { user} = useContext(AuthContext)
-  const [reviews, setReviews] = useState([])
-  const [refresh, setRefresh] = useState(false)
+  useTitle("service");
+  const { user } = useContext(AuthContext);
+  const [reviews, setReviews] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const service = useLoaderData();
   const { _id, image, name, price, description } = service.data;
 
- 
-
+  // handle submit add review
   const handleSubmit = (e) => {
     e.preventDefault();
     const review = {
       review: e.target.review.value,
       serviceid: _id,
-      user: user
+      user: user,
+      time: new Date().getTime(),
     };
     console.log(review);
- 
 
     fetch("http://localhost:5000/review", {
       method: "POST",
@@ -35,10 +34,9 @@ const ServicesDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-
         if (data.success) {
-          setReviews([...reviews, review])
-          setRefresh(!refresh)
+          setReviews([...reviews, review]);
+          setRefresh(!refresh);
           swal({
             title: data.message,
             icon: "success",
@@ -61,16 +59,14 @@ const ServicesDetails = () => {
       });
     e.target.reset();
   };
-  
-
 
   // useEffect(() => {
   //   fetch('http://localhost:5000/review')
   //     .then(res => res.json())
   //     .then(data => {
   //       if (data.success) {
-         
-  //         setReviews(data.data)  
+
+  //         setReviews(data.data)
   //       }
   //     })
   //     .catch(error => {
@@ -79,16 +75,17 @@ const ServicesDetails = () => {
   // }, [refresh])
 
 
+  // review fetch by service and load
   useEffect(() => {
     fetch(`http://localhost:5000/review/${_id}`)
-      .then(res => res.json())
-      .then(data => {
-        setReviews(data)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
-      })
-  }, [_id])
+      });
+  }, [_id]);
 
   return (
     <>
@@ -114,6 +111,9 @@ const ServicesDetails = () => {
             <h2 className="text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4">
               Description:
             </h2>
+            <p className="text-indigo-600 font-bold sm:text-lg mb-6 md:mb-8">
+              Price: {price}
+            </p>
             <p className="text-gray-500 sm:text-lg mb-6 md:mb-8">
               This is a section of some simple filler text, also known as
               placeholder text. It shares some characteristics of a real written
@@ -142,7 +142,10 @@ const ServicesDetails = () => {
               About us
             </h2>
 
-            <p className="text-gray-500 sm:text-lg mb-6 md:mb-8">{description}</p>
+            <p className="text-gray-500 sm:text-lg mb-6 md:mb-8">
+              {description}
+            </p>
+            
 
             <ul className="list-disc list-inside text-gray-500 sm:text-lg mb-6 md:mb-8">
               <li>This is a section of some simple filler text</li>
@@ -171,22 +174,29 @@ const ServicesDetails = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Review section start */}
       <section>
         <div className="w-[50%] mx-auto">
-          {
-            reviews.map(review =>  {
+          {reviews
+            .sort((a, b) => b.time - a.time)
+            .map((review) => {
               return (
                 <>
                   <div className="w-[70%] mx-auto">
                     <div className="flex gap-5 items-center">
                       <div>
-                        <img src={user?.photoURL} className='w-12 h-12 rounded-full' alt="" />
+                        <img
+                          src={user?.photoURL}
+                          className="w-12 h-12 rounded-full"
+                          alt=""
+                        />
                       </div>
                       <div>
                         <h1> {user?.displayName}</h1>
-                        <p className="text-gray-500"><small>06/10/2022</small></p>
+                        <p className="text-gray-500">
+                          <small>06/10/2022</small>
+                        </p>
                       </div>
                     </div>
 
@@ -195,50 +205,43 @@ const ServicesDetails = () => {
                     </div>
                   </div>
                 </>
-              )
-            })
-          }
-         
-          
-          </div>
-       <div className="w-[60%] mx-auto">
+              );
+            })}
+        </div>
+        <div className="w-[60%] mx-auto">
           <form onSubmit={handleSubmit}>
-
             <div className="flex justify-center mx-auto gap-3">
-              {
-                user || user?.email || user?.uid || user?.displayName
+              {user || user?.email || user?.uid || user?.displayName ? (
+                <div>
+                  <textarea
+                    name="review"
+                    placeholder="Type your review"
+                    id=""
+                    cols="30"
+                    rows=""
+                    className="flex-1 py-5 border-b-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none rounded-lg"
+                  ></textarea>
 
-                  ?
-                  <div>
-                    <textarea
-                      name="review"
-                      placeholder="Type your review"
-                      id="" cols="30"
-                      rows=""
-                      className="flex-1 py-5 border-b-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none rounded-lg"
-                    >
-                    </textarea>
-
-                    <div className='flex mb-10 items-center gap-4'>
-                      <div>  <button className='bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all'>
+                  <div className="flex mb-10 items-center gap-4">
+                    <div>
+                      {" "}
+                      <button className="bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all">
                         Add review
-                      </button></div>
-                    </div>
-
-                  </div>
-                    :
-                    <div className='gap-4'>
-                      <button className='bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all'>
-                      <h3>Please login to add a review</h3>
-                        <Link to='/login' >Login</Link>
                       </button>
                     </div>
-                }
-
+                  </div>
+                </div>
+              ) : (
+                <div className="gap-4">
+                  <button className="bg-indigo-500 px-10 py-2 rounded-md text-white font-medium hover:bg-indigo-600 transition-all">
+                    <h3>Please login to add a review</h3>
+                    <Link to="/login">Login</Link>
+                  </button>
+                </div>
+              )}
             </div>
-           
           </form>
-       </div>
+        </div>
       </section>
     </>
   );

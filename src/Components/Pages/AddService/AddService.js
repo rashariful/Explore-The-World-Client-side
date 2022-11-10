@@ -5,6 +5,8 @@ import useTitle from '../../../hooks/useTitle';
 
 const AddService = () => {
     useTitle("add service")
+    
+    // handle submit for create service
     const handleSubmit = (e) => {
         e.preventDefault();
         const product = {
@@ -107,7 +109,7 @@ const AddService = () => {
 
                         <div className="text-right">
                             <button className="py-3 px-8 rounded-md bg-green-400 text-white font-bold">
-                                Add Product
+                                Add Service
                             </button>
                         </div>
                     </form>
