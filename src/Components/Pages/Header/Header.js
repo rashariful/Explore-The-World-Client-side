@@ -36,8 +36,12 @@ const Header = () => {
                     </NavLink>
 
 
-                    <NavLink to="/addservice" >Add Service</NavLink>
-                    <NavLink to="/myreview" >MyReview</NavLink>
+                    {
+                        user?
+                         <><NavLink to="/addservice" >Add Service</NavLink>
+                         <NavLink to="/myreview" >MyReview</NavLink></>
+                         : ""
+                    }
                     <NavLink to="/blog" >Blog</NavLink>
                    
 

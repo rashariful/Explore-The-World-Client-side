@@ -10,14 +10,27 @@ const MyReview = () => {
   const { user } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
 
+
   useEffect(() => {
-    fetch(`http://localhost:5000/myreview?email=${user?.email}`)
-      .then(res => res.json())
-      .then(data => setMyReviews(data))
+    fetch(`http://localhost:5000/myreview?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => {
+        if (res.status === 401 || res.status === 403) {
+          
+        }
+        return res.json();
+      })
+      .then(data => {
+        setMyReviews(data);
+      })
   }, [user?.email])
 
 
-  // Get function for products
+
+  // handle delete
   // useEffect(() => {
   //     fetch("http://localhost:5000/review")
   //         .then((res) => res.json())

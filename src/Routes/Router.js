@@ -5,7 +5,6 @@ import AllServices from "../Components/Pages/Home/AllServices/AllServices";
 import EditReview from "../Components/Pages/Home/EditReview/EditReview";
 import Home from "../Components/Pages/Home/Home/Home";
 import ServicesDetails from "../Components/Pages/Home/ServicesDetails/ServicesDetails";
-import UserReviews from "../Components/Pages/Home/UserReviews/UserReviews";
 import Login from "../Components/Pages/Login/Login";
 import MyReview from "../Components/Pages/MyReview/MyReview";
 import NotFound from "../Components/Pages/NotFound/NotFound";
@@ -57,10 +56,6 @@ const router = createBrowserRouter([
       {
         path: "/myreview/edit/:id",
         element: <EditReview></EditReview>,
-      },
-      {
-        path: "/myreviews",
-        element: <UserReviews></UserReviews>,
       },
       {
         path: "/blog",

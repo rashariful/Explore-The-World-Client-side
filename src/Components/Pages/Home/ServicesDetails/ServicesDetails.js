@@ -60,21 +60,6 @@ const ServicesDetails = () => {
     e.target.reset();
   };
 
-  // useEffect(() => {
-  //   fetch('http://localhost:5000/review')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       if (data.success) {
-
-  //         setReviews(data.data)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     })
-  // }, [refresh])
-
-  // review fetch by service and load
   useEffect(() => {
     fetch(`http://localhost:5000/review/${_id}`)
       .then((res) => res.json())
