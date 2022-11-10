@@ -40,7 +40,6 @@ const MyReview = () => {
 
     // Delete function here
     const handleDelete = (id) => {
-        console.log(id);
         fetch(`http://localhost:5000/review/${id}`, {
             method: "delete",
         })

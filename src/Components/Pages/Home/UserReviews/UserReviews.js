@@ -14,7 +14,7 @@ const UserReviews = () => {
         })
             .then(res => {
                 if(res.status === 401 || res.status === 403){
-                    logoutUser()
+                    
                 }
                 return res.json()
             })
