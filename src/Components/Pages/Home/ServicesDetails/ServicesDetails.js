@@ -74,7 +74,6 @@ const ServicesDetails = () => {
   //     })
   // }, [refresh])
 
-
   // review fetch by service and load
   useEffect(() => {
     fetch(`http://localhost:5000/review/${_id}`)
@@ -145,7 +144,6 @@ const ServicesDetails = () => {
             <p className="text-gray-500 sm:text-lg mb-6 md:mb-8">
               {description}
             </p>
-            
 
             <ul className="list-disc list-inside text-gray-500 sm:text-lg mb-6 md:mb-8">
               <li>This is a section of some simple filler text</li>

@@ -6,18 +6,16 @@ import useTitle from "../../../hooks/useTitle";
 
 const MyReview = () => {
   useTitle("my review");
-  const [reviews, setReviews] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const { user } = useContext(AuthContext);
-
   const [myReviews, setMyReviews] = useState([]);
- 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review?email=${user?.email}`)
-      .then((res) => res.json())
-        .then((data) => setMyReviews(data));
-  }, [user?.email]);
+    fetch(`http://localhost:5000/myreview?email=${user?.email}`)
+      .then(res => res.json())
+      .then(data => setMyReviews(data))
+  }, [user?.email])
+
 
   // Get function for products
   // useEffect(() => {
@@ -59,7 +57,7 @@ const MyReview = () => {
   return (
     <>
       <div className="py-32 px-10 flex justify-center w-full">
-        {myReviews?.data?.length === 0 ? (
+        {myReviews?.length === 0 ? (
           <div>
             <div className="bg-white py-6 sm:py-8 lg:py-12">
               <div className="max-w-screen-xl px-4 md:px-8 mx-auto">
@@ -144,7 +142,7 @@ const MyReview = () => {
             </Table.Head>
 
             <Table.Body className="divide-y">
-              {myReviews?.data?.map((review) => {
+              {myReviews?.map((review) => {
                 return (
                   <>
                     <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">

@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         element: <EditReview></EditReview>,
       },
       {
-        path: "/userreview",
+        path: "/myreviews",
         element: <UserReviews></UserReviews>,
       },
       {
