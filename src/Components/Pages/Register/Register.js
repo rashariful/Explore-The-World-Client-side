@@ -1,14 +1,14 @@
+import { Button } from "flowbite-react";
 import React, { useContext } from "react";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import { AuthContext } from "../../../Context/UserContext";
 import useTitle from "../../../hooks/useTitle";
 
-
 const Register = () => {
-  useTitle("register")
-  
+  useTitle("register");
+
   const {
     setUser,
     setError,
@@ -27,29 +27,29 @@ const Register = () => {
     const photoURL = form.photourl.value;
     const email = form.email.value;
     const password = form.password.value;
-    form.reset()
+    form.reset();
     registerUser(email, password)
       .then((result) => {
         const user = result.user;
-        setUser(user)
-        window.location.reload()
+        setUser(user);
+        window.location.reload();
         console.log(user);
-          swal({
-              title: "Registration Successful!",
-              icon: "success",
-              button: "ok",
-          });
+        swal({
+          title: "Registration Successful!",
+          icon: "success",
+          button: "ok",
+        });
         setError("");
         handleUpdateUserInfo(fullname, photoURL);
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
-          swal({
-              title: error,
-              icon: "warning",
-              button: "ok",
-          });
+        swal({
+          title: error,
+          icon: "warning",
+          button: "ok",
+        });
       });
     form.reset();
   };
@@ -76,21 +76,21 @@ const Register = () => {
     registerUserWithGoogle()
       .then((result) => {
         const user = result.user;
-          swal({
-              title: "Registration Successful!",
-              icon: "success",
-              button: "ok",
-          });
+        swal({
+          title: "Registration Successful!",
+          icon: "success",
+          button: "ok",
+        });
         setError("");
       })
       .catch((error) => {
         console.log(error);
         setError(error.message);
-          swal({
-              title: error,
-              icon: "warning",
-              button: "ok",
-          });
+        swal({
+          title: error,
+          icon: "warning",
+          button: "ok",
+        });
       });
   };
   // 03 register user with Github
@@ -98,21 +98,21 @@ const Register = () => {
     registerUserWithGithub()
       .then((result) => {
         const user = result.user;
-          swal({
-              title: "Registration Successful!",
-              icon: "success",
-              button: "ok",
-          });
+        swal({
+          title: "Registration Successful!",
+          icon: "success",
+          button: "ok",
+        });
         setError("");
       })
       .catch((error) => {
         console.log(error);
         setError(error.message);
-          swal({
-              title: error,
-              icon: "warning",
-              button: "ok",
-          });
+        swal({
+          title: error,
+          icon: "warning",
+          button: "ok",
+        });
       });
   };
 
@@ -181,7 +181,7 @@ const Register = () => {
                 />
               </div>
 
-              <button className="btn btn-primary w-full">Register Now</button>
+              <Button className="w-full">Register Now</Button>
 
               <div className="flex justify-center items-center relative">
                 <span className="h-px bg-gray-300 absolute inset-x-0"></span>

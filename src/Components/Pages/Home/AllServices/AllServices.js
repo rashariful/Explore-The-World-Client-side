@@ -5,10 +5,10 @@ import Service from '../Services/Service/Service';
 const AllServices = () => {
     const [services, setServices] = useState([])
     const { setLoading } = useContext(AuthContext)
-  
+
 
     useEffect(() => {
-        fetch('http://localhost:5000/service?route=home')
+        fetch('https://server-nine-beta.vercel.app/service?route=home')
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -18,10 +18,10 @@ const AllServices = () => {
             .catch(error => {
                 console.log(error);
             })
-        
+
     }, [])
 
- 
+
 
 
     return (

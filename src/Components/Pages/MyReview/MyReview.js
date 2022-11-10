@@ -12,14 +12,14 @@ const MyReview = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myreview?email=${user?.email}`, {
+    fetch(`https://server-nine-beta.vercel.app/myreview?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
       .then(res => {
         if (res.status === 401 || res.status === 403) {
-          
+
         }
         return res.json();
       })
@@ -32,7 +32,7 @@ const MyReview = () => {
 
   // handle delete
   // useEffect(() => {
-  //     fetch("http://localhost:5000/review")
+  //     fetch("https://server-nine-beta.vercel.app/review")
   //         .then((res) => res.json())
   //         .then((data) => {
   //             if (data.success) {
@@ -46,7 +46,7 @@ const MyReview = () => {
 
   // Delete function here
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/review/${id}`, {
+    fetch(`https://server-nine-beta.vercel.app/review/${id}`, {
       method: "delete",
     })
       .then((res) => res.json())

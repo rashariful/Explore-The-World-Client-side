@@ -29,17 +29,17 @@ const Heros = () => {
                 modules={[EffectFade, Navigation, Pagination]}
                 className="mySwiper"
             >
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                <SwiperSlide >
+                    <img src="https://cdn.bangladeshscenictours.com/wp-content/uploads/2019/11/Exploring-Coxs-Bazar-990x490.jpg" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img className="h-54 w-full" src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                    <img className="h-54 w-full" src="https://vromonguide.com/wp-content/uploads/nilgiri-travel-guide-770x420.jpg" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                    <img src="https://pathfriend-bd.com/wp-content/uploads/2019/08/Coxs-Bazaar-Saintmartin.jpg" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                    <img src="https://travelvibe.net/wp-content/uploads/2021/03/Most-attractive-tourist-attraction-of-bangladesh-saint-martin-e1615271792566.jpg" />
                 </SwiperSlide>
             </Swiper>
         

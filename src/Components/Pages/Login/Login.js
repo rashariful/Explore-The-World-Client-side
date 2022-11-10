@@ -1,3 +1,4 @@
+import { Button } from "flowbite-react";
 import React, { useContext } from "react";
 import { FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -32,40 +33,40 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         const user = result.user
-        const currentUser ={
+        const currentUser = {
           email: user.email
         }
-        fetch('http://localhost:5000/jwt',{
+        fetch('https://server-nine-beta.vercel.app/jwt', {
           method: 'POST',
-          headers:{
+          headers: {
             'content-type': 'application/json'
           },
           body: JSON.stringify(currentUser)
         })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          localStorage.setItem('token', data.token)
-        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            localStorage.setItem('token', data.token)
+          })
 
 
         console.log(currentUser);
 
-          swal({
-              title: "Login Successful!",
-              icon: "success",
-              button: "ok",
-          });
-       
+        swal({
+          title: "Login Successful!",
+          icon: "success",
+          button: "ok",
+        });
+
         setError("");
       })
       .catch((error) => {
         setError(error.message);
-          swal({
-              title: error,
-              icon: "warning",
-              button: "ok",
-          });
+        swal({
+          title: error,
+          icon: "warning",
+          button: "ok",
+        });
       });
 
     navigate(from, { replace: true });
@@ -79,7 +80,7 @@ const Login = () => {
         const currentUser = {
           email: user.email
         }
-        fetch('http://localhost:5000/jwt', {
+        fetch('https://server-nine-beta.vercel.app/jwt', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
@@ -94,23 +95,23 @@ const Login = () => {
 
 
 
-          swal({
-              title: "Login Successful!",
-              icon: "success",
-              button: "ok",
-          });
-       
+        swal({
+          title: "Login Successful!",
+          icon: "success",
+          button: "ok",
+        });
+
         setError("");
       })
 
       .catch((error) => {
         console.log(error);
         setError(error.message);
-          swal({
-              title: error,
-              icon: "warning",
-              button: "ok",
-          });
+        swal({
+          title: error,
+          icon: "warning",
+          button: "ok",
+        });
       });
 
     navigate(from, { replace: true });
@@ -124,7 +125,7 @@ const Login = () => {
         const currentUser = {
           email: user.email
         }
-        fetch('http://localhost:5000/jwt', {
+        fetch('https://server-nine-beta.vercel.app/jwt', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
@@ -139,22 +140,22 @@ const Login = () => {
 
 
 
-          swal({
-              title: "Login Successful!",
-              icon: "success",
-              button: "ok",
-          });
+        swal({
+          title: "Login Successful!",
+          icon: "success",
+          button: "ok",
+        });
         console.log(result.user);
         setError("");
       })
 
       .catch((error) => {
         setError(error.message);
-          swal({
-              title: error,
-              icon: "warning",
-              button: "ok",
-          });
+        swal({
+          title: error,
+          icon: "warning",
+          button: "ok",
+        });
       });
 
     navigate(from, { replace: true });
@@ -205,7 +206,10 @@ const Login = () => {
                 />
               </div>
 
-              <button className="btn btn-primary w-full">Log in</button>
+              
+              <Button className="w-full">
+                Log in
+              </Button>
 
               <div className="flex justify-center items-center relative">
                 <span className="h-px bg-gray-300 absolute inset-x-0"></span>
@@ -266,7 +270,7 @@ const Login = () => {
                 </Link>
               </p>
             </div>
-             
+
           </form>
         </div>
       </div>

@@ -27,8 +27,8 @@ const Blog = () => {
                                 <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6 xl:gap-8">
 
                                     <div className="flex flex-col bg-white border rounded-lg overflow-hidden">
-                                        <a
-                                            href="#"
+                                        <Link
+                                           
                                             className="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative"
                                         >
                                             <img
@@ -37,16 +37,16 @@ const Blog = () => {
                                                 alt="Photo by Minh Pham"
                                                 className="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
                                             />
-                                        </a>
+                                        </Link>
 
                                         <div className="flex flex-col flex-1 p-4 sm:p-6">
                                             <h2 className="text-gray-800 text-lg font-semibold mb-2">
-                                                <a
-                                                    href="#"
+                                                <Link
+                                                   
                                                     className="hover:text-indigo-500 active:text-indigo-600 transition duration-100"
                                                 >
                                                     Difference between SQL and NoSQL
-                                                </a>
+                                                </Link>
                                             </h2>
 
                                             <p className="text-gray-500 mb-8">
@@ -56,8 +56,8 @@ const Blog = () => {
                                     </div>
 
                                     <div className="flex flex-col bg-white border rounded-lg overflow-hidden">
-                                        <a
-                                            href="#"
+                                        <Link
+                                           
                                             className="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative"
                                         >
                                             <img
@@ -66,16 +66,16 @@ const Blog = () => {
                                                 alt="Photo by Magicle"
                                                 className="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
                                             />
-                                        </a>
+                                        </Link>
 
                                         <div className="flex flex-col flex-1 p-4 sm:p-6">
                                             <h2 className="text-gray-800 text-lg font-semibold mb-2">
-                                                <a
-                                                    href="#"
+                                                <Link
+                                                   
                                                     className="hover:text-indigo-500 active:text-indigo-600 transition duration-100"
                                                 >
                                                     What is JWT, and how does it work?
-                                                </a>
+                                                </Link>
                                             </h2>
 
                                             <p className="text-gray-500 mb-8">
@@ -85,8 +85,8 @@ const Blog = () => {
                                     </div>
 
                                     <div className="flex flex-col bg-white border rounded-lg overflow-hidden">
-                                        <a
-                                            href="#"
+                                        <Link
+                                           
                                             className="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative"
                                         >
                                             <img
@@ -95,16 +95,16 @@ const Blog = () => {
                                                 alt="Photo by Martin Sanchez"
                                                 className="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
                                             />
-                                        </a>
+                                        </Link>
 
                                         <div className="flex flex-col flex-1 p-4 sm:p-6">
                                             <h2 className="text-gray-800 text-lg font-semibold mb-2">
-                                                <a
-                                                    href="#"
+                                                <Link
+                                                    
                                                     className="hover:text-indigo-500 active:text-indigo-600 transition duration-100"
                                                 >
                                                     What is the difference between javascript and Node JS?
-                                                </a>
+                                                </Link>
                                             </h2>
 
                                             <p className="text-gray-500 mb-8">
@@ -114,8 +114,8 @@ const Blog = () => {
                                     </div>
 
                                     <div className="flex flex-col bg-white border rounded-lg overflow-hidden">
-                                        <a
-                                            href="#"
+                                        <Link
+                                           
                                             className="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative"
                                         >
                                             <img
@@ -124,16 +124,16 @@ const Blog = () => {
                                                 alt="Photo by Martin Sanchez"
                                                 className="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
                                             />
-                                        </a>
+                                        </Link>
 
                                         <div className="flex flex-col flex-1 p-4 sm:p-6">
                                             <h2 className="text-gray-800 text-lg font-semibold mb-2">
-                                                <a
-                                                    href="#"
+                                                <Link
+                                                    
                                                     className="hover:text-indigo-500 active:text-indigo-600 transition duration-100"
                                                 >
                                                     How does node js handle multiple requests
-                                                </a>
+                                                </Link>
                                             </h2>
 
                                             <p className="text-gray-500 mb-8">
