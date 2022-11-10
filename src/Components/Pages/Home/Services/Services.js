@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { AuthContext } from '../../../../Context/UserContext';
 import Service from './Service/Service';
 
 const Services = () => {
+    const { setLoading, loading } = useContext(AuthContext)
     const [services, setServices] = useState ([])
-
-    console.log(services);
+   if(services.length === 0){
+       setLoading(true)
+   }
 
     useEffect(() => {
         fetch(`http://localhost:5000/service`)
@@ -18,6 +21,7 @@ const Services = () => {
             .catch(error => {
                 console.log(error);
             })
+        setLoading(false)
     }, [])
 
     return (

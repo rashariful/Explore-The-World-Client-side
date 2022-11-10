@@ -13,13 +13,14 @@ const ServicesDetails = () => {
   const [refresh, setRefresh] = useState(false)
   const service = useLoaderData();
   const { _id, image, name, price, description } = service.data;
+
  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const review = {
       review: e.target.review.value,
-      id: _id,
+      serviceid: _id,
       user: user
     };
     console.log(review);
@@ -34,7 +35,9 @@ const ServicesDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+
         if (data.success) {
+          setReviews([...reviews, review])
           setRefresh(!refresh)
           swal({
             title: data.message,
@@ -59,19 +62,33 @@ const ServicesDetails = () => {
     e.target.reset();
   };
   
+
+
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/review')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if (data.success) {
+         
+  //         setReviews(data.data)  
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     })
+  // }, [refresh])
+
+
   useEffect(() => {
-    fetch('http://localhost:5000/review')
+    fetch(`http://localhost:5000/review/${_id}`)
       .then(res => res.json())
       .then(data => {
-        if (data.success) {
-         
-          setReviews(data.data)  
-        }
+        setReviews(data)
       })
       .catch(error => {
         console.log(error);
       })
-  }, [refresh])
+  }, [_id])
 
   return (
     <>

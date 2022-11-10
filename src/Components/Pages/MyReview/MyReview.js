@@ -9,6 +9,8 @@ const MyReview = () => {
     const [reviews, setReviews] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const {user} = useContext(AuthContext)
+    console.log(reviews);
+    
 
     const [myReviews, setMyReviews] = useState([])
     console.log(myReviews?.data?.length);
@@ -23,18 +25,18 @@ const MyReview = () => {
    
 
     // Get function for products
-    useEffect(() => {
-        fetch("http://localhost:5000/review")
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.success) {
-                    setReviews(data.data);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, [refresh]);
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/review")
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             if (data.success) {
+    //                 setReviews(data.data);
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }, [refresh]);
 
     // Delete function here
     const handleDelete = (id) => {

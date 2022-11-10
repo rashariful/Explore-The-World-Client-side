@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../../../Context/UserContext';
 import Service from '../Services/Service/Service';
 
 const AllServices = () => {
     const [services, setServices] = useState([])
+    const { setLoading } = useContext(AuthContext)
+    if(services?.length === 0){
+        setLoading(true)
+    }
 
     useEffect(() => {
         fetch('http://localhost:5000/service?route=home')
@@ -15,6 +20,7 @@ const AllServices = () => {
             .catch(error => {
                 console.log(error);
             })
+        setLoading(false)
     }, [])
     return (
         <div className='w-[60%] mx-auto'>

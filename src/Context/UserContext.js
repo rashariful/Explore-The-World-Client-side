@@ -90,6 +90,7 @@ const UserContext = ({ children }) => {
     user,
     setUser,
     loading,
+    setLoading,
     error,
     setError,
     registerUser,
